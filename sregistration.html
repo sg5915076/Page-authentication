@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>School Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<script>
+  function clearErrors(){
+
+    errors = document.getElementsByClassName('formerror');
+    for(let item of errors)
+    {
+        item.innerHTML = "";
+    }
+
+
+}
+function seterror(id, error){
+    //sets error inside tag of id 
+    element = document.getElementById(id);
+    element.getElementsByClassName('formerror')[0].innerHTML = error;
+
+}
+
+function validateForm(){
+    var returnval = true;
+    clearErrors();
+
+    //perform validation and if validation fails, set the value of returnval to false
+    var name = document.forms['myForm']["schoolname"].value;
+    if (name.length<5){
+        seterror("name", "*Length of name is too short");
+        returnval = false;
+    }
+
+    if (name.length == 0){
+        seterror("name", "*Length of name cannot be zero!");
+        returnval = false;
+    }
+
+    var name = document.forms['myForm']["principalname"].value;
+    if (name.length<5){
+        seterror("name", "*Length of name is too short");
+        returnval = false;
+    }
+
+    if (name.length == 0){
+        seterror("name", "*Length of name cannot be zero!");
+        returnval = false;
+    }
+
+    var email = document.forms['myForm']["femail"].value;
+    if (email.length>15){
+        seterror("email", "*Email length is too long");
+        returnval = false;
+    }
+
+    var phone = document.forms['myForm']["fphone"].value;
+    if (phone.length != 10){
+        seterror("phone", "*Phone number should be of 10 digits!");
+        returnval = false;
+    }
+
+    var password = document.forms['myForm']["fpass"].value;
+    if (password.length < 6){
+
+        // Quiz: create a logic to allow only those passwords which contain atleast one letter, one number and one special character and one uppercase letter
+        seterror("pass", "*Password should be atleast 6 characters long!");
+        returnval = false;
+    }
+
+    var cpassword = document.forms['myForm']["fcpass"].value;
+    if (cpassword != password){
+        seterror("cpass", "*Password and Confirm password should match!");
+        returnval = false;
+    }
+
+    return returnval;
+}
+
+</script>
+</head>
+<style>
+  body{
+    background-image: url(school2.jpeg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+  
+    #ui{
+      background-color: #6ac6e8;
+      padding: 30px;
+      margin-top: 20px;
+      margin-left: 50px;
+      opacity: 0.8;
+    }
+
+    #ui label, h1{
+      color: darkblue;
+      margin-left: 180px;
+    }
+
+    #ui span{
+      color: #FF0000;
+    }
+
+    .formdesign {
+      font-size: 20px;
+      /*margin-left: 200px;*/
+    }
+
+    .formdesign input {
+      width: 50%;
+      padding: 4px;
+      /*border: 1px solid blue;*/
+      margin: 14px;
+      /*border-radius: 4px;*/
+      font-size: 15px;
+    }
+
+    .formerror {
+      color: red;
+    }
+
+    .but {
+      border-radius: 9px;
+      width: 20px;
+      height: 40px;
+      font-size: 25px;
+      color: darkblue;
+    }
+
+    .but:hover{
+      color: black;
+    }
+  </style>
+
+<body>
+<div class="container" style="width: 50vw; height: 100vh; margin-left: -1%;">
+<div id="ui">
+
+        <h1>Registration!</h1>
+        <br>
+    <form class="formdesign" aciton ="db.php" name="myForm" onsubmit="return validateForm()" method="POST">
+        <div class="formdesign" id="name">
+            <b>School Name:</b>
+             <input class="form-control" type="text" name="schoolname" required><span class="formerror"> </span>
+        </div>
+          
+          <div class ="formdesign" id="name">
+            <b>Principal Name:</b> <input class="form-control" type="text" name="principalname" required><span class="formerror"> </span>
+        </div>
+          
+
+
+          <div class="formdesign" id="name">
+           <b> City:</b> <input class="form-control" type="text" name="city" required><span class="formerror"> </span>
+        </div>
+
+            <div class="formdesign" id="name">
+            <b>State:</b><span class="formerror"> </span>
+
+          <select name="URL" class="formdesign form-control" required style="width: 316px; margin-left: 15px; height: 37px;">
+      <option  selected="selected" value="">Select State Name</option>
+      <option value="state link page">Andhra Pradesh</option>
+      <option value="state link page">Arunachal Pradesh</option>
+      <option value="state link page">Assam</option>
+      <option value="state link page">Bihar</option>
+      <option value="state link page">Chhattisgarh</option>
+      <option value="state link page">Goa</option>
+      <option value="state link page">Gujarat</option>
+      <option value="state link page">Haryana</option>
+      <option value="state link page">Himachal Pradesh</option>
+      <option value="state link page">Jharkhand</option>
+      <option value="state link page">Karnataka</option>
+      <option value="state link page">Kerala</option>
+      <option value="state link page">Madhya Pradesh</option>
+      <option value="state link page">Maharashtra</option>
+      <option value="state link page">Manipur</option>
+      <option value="state link page">Meghalaya</option>
+      <option value="state link page">Mizoram</option>
+      <option value="state link page">Nagaland</option>
+      <option value="state link page">Odisha</option>
+      <option value="state link page">Punjab</option>
+      <option value="state link page">Rajasthan</option>
+      <option value="state link page">Sikkim</option>
+      <option value="state link page">Tamil Nadu</option>
+      <option value="state link page">Telangana</option>
+      <option value="state link page">Tripura</option>
+      <option value="state link page">Uttar Pradesh</option>
+      <option value="state link page">Uttarakhand</option>
+      <option value="state link page">West Bengal</option>
+    </select>
+          </div>
+          <div class="formdesign" id="email">
+            <b>Email:</b> <input class="form-control" type="email" name="femail" required><span class="formerror"> </span>
+        </div>
+
+           <div class="formdesign" id="pass">
+           <b> Password:</b> <input class="form-control" type="password" name="fpass" required><span class="formerror"</span>
+        </div>
+
+        <div class="formdesign" id="cpass">
+           <b> Confirm Password:</b> <input class="form-control" type="password" name="fcpass" required><span class="formerror"></span>
+        </div>
+           <div class="formdesign" id="phone">
+           <b> Phone:</b> <input class="form-control" type="phone" name="fphone" required><span class="formerror"></span>
+        </div>
+
+            <br>
+            <input class="but" type="submit" value="Submit">
+
+    </form>
+   </div>
+   </div> 
+</body>
+</html>
